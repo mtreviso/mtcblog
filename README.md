@@ -1,2 +1,4 @@
 # mtcblog
-Códigos utilizados no blog.
+Códigos utilizados no [meu blog](https://meitcher.wordpress.com/).
+
+Sinta-se livre para contribuir :-).
