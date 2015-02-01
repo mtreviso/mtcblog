@@ -1,0 +1,11 @@
+É-soma-de-dois-inteiros(A, x):
+    merge_sort(A)
+    n = A.comprimento
+    for i=1 to n
+        x1 = A[i]
+        j = Busca-Binaria(A, 0, n-1, x-x1)
+        if j > 0
+            x2 = A[j]
+            return (x1, x2)
+    return None
+

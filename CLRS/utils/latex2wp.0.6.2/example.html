@@ -1,0 +1,10 @@
+
+<p>
+Look
+<p>
+<p align=center>$latex \displaystyle  T(n) = \left\{ \begin{array}{l l} 2 & \quad \text{se } n=2 \\ 2T(n/2)+n & \quad \text{se } n=2^k \text{, para } k &gt; 1 \end{array} \right.&fg=000000$</p>
+
+<p>
+<p align=center>$latex \displaystyle  \begin{array}{lclcl} T(2^{k+1}) & = & & 2T(2^{k+1}/2) + 2^{k+1} \\ & = & & 2T(2^k) + 2^{k+1} \\ & = & & 2(2^klg(2^k)) + 2^{k+1} \\ & = & & 2^{k+1}lg(2^k) + 2^{k+1} \\ & = & 2^{k+1}k + 2^{k+1} & & 2^{k+1}(lg(2^k) + 1) \\ & = & 2^{k+1}(k + 1) & & 2^{k+1}(lg(2^k) + lg(2)) \\ & = & 2^{k+1}(lg(2^{k + 1})) & & 2^{k+1}(lg(2^k \times 2)) \\ & = & 2^{k+1}lg(2^{k+1}) & & 2^{k+1}lg(2^{k+1}) \end{array} \ \ \ \ \ (1)&fg=000000$</p>
+
+<p>

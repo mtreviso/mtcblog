@@ -1,0 +1,7 @@
+*.zip
+*.tar.gz
+*.o 
+*.hi
+*.pyc
+*.class
+*/__pycache__/
