@@ -1,4 +1,5 @@
 import math
+from random import randint
 
 
 precisao = 1e-8
@@ -15,9 +16,9 @@ def phi(n, x):
 
 def newtonRaphson(n, x):
 
-	if x < 0:
+	if n < 0:
 		return (-1, 0)
-	elif x == 0:
+	elif n == 0:
 		return (0, 0)
 
 	
@@ -31,11 +32,11 @@ def newtonRaphson(n, x):
 
 
 
-def bissecao(x, a, b):
+def bissecao(n, a, b):
 
-	if x < 0:
+	if n < 0:
 		return (-1, 0)
-	elif x == 0:
+	elif n == 0:
 		return (0, 0)
 	
 	ini, meio, fim = a, (a+b)/2.0, b
@@ -43,7 +44,7 @@ def bissecao(x, a, b):
 	
 	while(abs(fim-ini) > precisao):
 		meio = (ini+fim)/2.0
-		if(meio*meio > x):
+		if(meio*meio > n):
 			fim = meio
 		else:
 			ini = meio
@@ -54,9 +55,10 @@ def bissecao(x, a, b):
 
 
 if __name__ == "__main__":
-	while(True):
+	while True:
 		print("Digite o valor da raiz quadrada e o chute inicial: ")
 		n, x0 = map(float, input().split())
+
 		res = bissecao(n, x0, n)
 		print("Bissecao resultado: %.8lf" % res[0])
 		print("Bissecao iteracoes: %d" % res[1])
