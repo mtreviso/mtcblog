@@ -1,74 +1,66 @@
 import math
-# ver metodos disponiveis na math:
-# print(dir(math))
-
-INF = 9999999
-
-def equacao(x):
-	return x/2.0
 
 
-def phi(x, y):
-	return y + x/y
+precisao = 1e-8
+
+def equacao(n, x):
+	return x*x - n
+
+def eqDerivada(x):
+	return 2*x
+
+def phi(n, x):
+	return x - equacao(n, x)/eqDerivada(x)
 
 
-def newtonRaphson(x, precisao):
-	
+def newtonRaphson(n, x):
+
 	if x < 0:
-		return "complex root"
+		return (-1, 0)
 	elif x == 0:
-		return 0
+		return (0, 0)
 
+	
 	its = 0
-	y = 1 # chute inicial
-	while(abs(y*y - x) > precisao):
-		y = equacao(phi(x, y))
+	while(abs(equacao(n, x)) > precisao):
+		x = phi(n, x)
 		its += 1
 
-	print("Bissecao iteracoes: ", its)
-	return y
+	
+	return (x, its)
 
 
 
-
-def bissecao(x, a, b, max_erro):
+def bissecao(x, a, b):
 
 	if x < 0:
-		return "complex root"
+		return (-1, 0)
 	elif x == 0:
-		return 0
-
-	ini, meio, fim = a, 0, b
-	erro = fim - ini
+		return (0, 0)
+	
+	ini, meio, fim = a, (a+b)/2.0, b
 	its = 0
 	
-	while(erro > max_erro):
-		
-		meio = (ini+fim)/2
-		resx = meio*meio
-		# resa = ini*ini
-		
-		# if(resx*resa > 0):
-		if(resx > x):
+	while(abs(fim-ini) > precisao):
+		meio = (ini+fim)/2.0
+		if(meio*meio > x):
 			fim = meio
 		else:
 			ini = meio
-			
-		erro = fim - ini
 		its += 1
-
-	print("Bissecao iteracoes: ", its)
-	return meio
-
-
-# main
-precisao = 1e-12
+	
+	return (meio, its)
 
 
-while(True):
-	print("Digite a aproximacao inicial ou `STOP` para parar:")
-	aprox = input()
-	if(aprox.upper() == 'STOP'):
-		break
-	print("Resultado: %.9lf\n" % newtonRaphson(float(aprox), precisao))
-	print("Resultado: %.9lf\n" % bissecao(float(aprox), -INF, INF, precisao))
+
+if __name__ == "__main__":
+	while(True):
+		print("Digite o valor da raiz quadrada e o chute inicial: ")
+		n, x0 = map(float, input().split())
+		res = bissecao(n, x0, n)
+		print("Bissecao resultado: %.8lf" % res[0])
+		print("Bissecao iteracoes: %d" % res[1])
+
+		res = newtonRaphson(n, x0)
+		print("Newton-Raphson resultado: %.8lf" % res[0])
+		print("Newton-Raphson iteracoes: %d" % res[1])
